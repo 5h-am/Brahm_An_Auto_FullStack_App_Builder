@@ -43,6 +43,7 @@ coverage/
 
 # Local data
 data/
+!**/src/data/
 *.db
 *.sqlite
 
