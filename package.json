@@ -2,6 +2,9 @@
   "name": "brahm",
   "private": true,
   "workspaces": ["engine", "platform/frontend", "platform/backend"],
+  "engines": {
+    "node": "20.x"
+  },
   "scripts": {
     "build:engine": "npm run build -w engine",
     "build:platform": "npm run build -w platform/frontend && npm run build -w platform/backend",
