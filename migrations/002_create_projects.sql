@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS projects (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  name TEXT NOT NULL,
+  config JSONB NOT NULL DEFAULT '{}',
+  version INTEGER NOT NULL DEFAULT 1,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);

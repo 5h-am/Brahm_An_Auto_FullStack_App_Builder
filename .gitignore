@@ -1,0 +1,68 @@
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Build outputs
+dist/
+build/
+**/dist/
+**/build/
+
+# Logs
+*.log
+npm-debug.log*
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Coverage
+coverage/
+
+# Vite/Bundler cache
+**/.vite/
+**/.turbo/
+
+# Playwright
+**/test-results/
+**/playwright-report/
+**/blob-report/
+**/playwright/.cache/
+
+# Local data
+data/
+*.db
+*.sqlite
+
+# Testing
+**/coverage/
+**/junit.xml
+
+# Misc
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.vscode/*
+!.vscode/extensions.json
+.idea/
+
+# Backend logs
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*

@@ -1,0 +1,27 @@
+{
+  "name": "@brahm/backend",
+  "version": "1.0.0",
+  "main": "server.js",
+  "dependencies": {
+    "@brahm/engine": "1.0.0",
+    "@octokit/rest": "latest",
+    "archiver": "latest",
+    "bcrypt": "latest",
+    "cookie-parser": "latest",
+    "cors": "latest",
+    "dotenv": "latest",
+    "express": "latest",
+    "express-rate-limit": "latest",
+    "helmet": "latest",
+    "jsonwebtoken": "latest",
+    "morgan": "latest",
+    "nanoid": "^3.3.7",
+    "papaparse": "^5.5.3",
+    "pg": "latest",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "jest": "^30.3.0",
+    "supertest": "^7.2.2"
+  }
+}

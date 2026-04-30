@@ -1,0 +1,10 @@
+{
+  "name": "brahm",
+  "private": true,
+  "workspaces": ["engine", "platform/frontend", "platform/backend"],
+  "scripts": {
+    "build:engine": "npm run build -w engine",
+    "build:platform": "npm run build -w platform/frontend && npm run build -w platform/backend",
+    "build": "npm run build:engine && npm run build:platform"
+  }
+}
