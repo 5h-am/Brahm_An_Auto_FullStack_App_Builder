@@ -484,6 +484,48 @@ Actions: Modified engine/package.json.
 State: Deployment reliability enhanced.
 ---
 
+---
+Timestamp: 2026-04-30 21:30
+Phase: Block 9 Supplement — Environment Stability
+Thought Process: Pinned Node.js version to 20.x in root package.json to ensure compatibility with Vite and build tools, avoiding issues with newer Node versions (v24).
+Actions: Modified root package.json.
+State: Environment stability locked.
+---
+
+---
+Timestamp: 2026-04-30 21:38
+Phase: Production Fix: Native Binding Resolution
+Thought Process: Addressed Vercel deployment error "Native binding for linux-x64-gnu not found" by explicitly adding `@rolldown/binding-linux-x64-gnu` to `optionalDependencies` in `platform/frontend/package.json`. Used version `1.0.0-rc.17` to match the current `rolldown` installation.
+Actions: Modified `platform/frontend/package.json`.
+State: Vercel deployment path cleared.
+---
+
+---
+Timestamp: 2026-04-30 21:50
+Phase: Production Fix: Missing File Restoration
+Thought Process: Identified that `exampleConfigs.js` was missing from the repository because it was being ignored by a broad `data/` rule in `.gitignore`. Updated `.gitignore` to allow `**/src/data/` while keeping other data directories private. Verified the fix by successfully running a local production build and pushing the missing file to the remote repository.
+Actions: 
+  - Modified `.gitignore` to exclude `**/src/data/` from ignore rules.
+  - Verified local build: `npm run build -w platform/frontend` (Success, 81 modules).
+  - Staged, committed, and pushed `platform/frontend/src/data/exampleConfigs.js`.
+State: Repository integrity restored. Vercel build should now succeed.
+---
+
+---
+Timestamp: 2026-04-30 21:58
+Phase: Production Fix: LightningCSS Native Binding Resolution
+Thought Process: Addressed Vercel deployment error "Native binding for lightningcss not found" by explicitly adding `lightningcss-linux-x64-gnu` to `optionalDependencies` in `platform/frontend/package.json`. Used version `1.32.0` based on the current `package-lock.json` state. Updated the root lockfile via `npm install` to ensure Vercel fetches the binary.
+Actions: 
+  - Modified `platform/frontend/package.json`.
+  - Updated `package-lock.json` via `npm install`.
+  - Staged, committed, and pushed both files.
+State: Vercel deployment path further cleared for CSS transformation.
+---
+
+
+
+
+
 
 
 
@@ -526,4 +568,14 @@ Phase: Testing Complete — Full Test Run Summary
 Thought Process: This pass validated the highest-leverage local contracts that could run in the available environment, then stopped where further suites would produce environment noise rather than trustworthy product signals. The engine suite produced clear implementation failures; backend HTTP testing produced partial auth/security signal but exposed test database isolation problems; frontend build passed but browser E2E is blocked by missing Chromium and disk exhaustion.
 Actions: Created 6 test/config files, installed Jest/Supertest/Playwright test dependencies, created and migrated `brahm_test`, ran engine Jest, backend auth/security Jest, frontend Vite build, and attempted Playwright browser execution/install. Updated `TEST.md` after each milestone and appended testing entries to `BRAHM_LOG.md`.
 State: Engine: 72 passed / 3 failed. Backend auth/security subset: 11 passed / 3 failed due database isolation mismatch. Frontend build: passed. Frontend E2E: blocked by Playwright Chromium `ENOSPC`. Production readiness assessment: not ready to certify; resilience and generated-code failures need fixes, and test infrastructure needs reliable test DB/server/browser isolation before full Phase 3-8 coverage can be trusted.
+---
+
+---
+Timestamp: 2026-04-30 23:15
+Phase: Production Routing — vercel.json rewrite added
+Thought Process: SPA routing on Vercel requires a rewrite rule to redirect all non-file requests to index.html to prevent 404 errors on page refresh. Created vercel.json in both the platform/frontend directory and the project root to ensure the rule is applied regardless of Vercel's root directory configuration. Verified that the build command in the root package.json still correctly targets the frontend workspace.
+Actions:
+  - Created /platform/frontend/vercel.json with rewrite rule.
+  - Created /vercel.json (root) with rewrite rule.
+State: Production 404 refresh error fix implemented.
 ---
