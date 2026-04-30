@@ -476,6 +476,15 @@ Actions:
 State: Block 9 complete. Brahm v10.0 is now production-ready and deployment-capable.
 ---
 
+---
+Timestamp: 2026-04-30 20:48
+Phase: Block 9 Supplement — Deployment Fix
+Thought Process: Added a no-op build script to @brahm/engine to satisfy npm workspace requirements on Render and Vercel.
+Actions: Modified engine/package.json.
+State: Deployment reliability enhanced.
+---
+
+
 
 
 

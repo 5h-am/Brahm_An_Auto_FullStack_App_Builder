@@ -2,6 +2,9 @@
   "name": "@brahm/engine",
   "version": "1.0.0",
   "main": "index.js",
+  "scripts": {
+    "build": "echo 'Engine build stub successful. No compilation required.'"
+  },
   "exports": {
     "browser": "./index.browser.js",
     "import": "./index.browser.js",
