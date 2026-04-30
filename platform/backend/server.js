@@ -10,12 +10,32 @@ const errorMiddleware = require('./middlewares/error.middleware');
 const { runMigrations } = require('../../migrations/migrate');
 const projectRepo = require('./repo/project.repo');
 const { registerEntityRoutes } = require('./routes/data.routes');
+const pool = require('./repo/db');
 
 const app = express();
 
 (async () => {
   try {
     applySecurityMiddleware(app);
+
+    // A lightweight health check endpoint (with DB connectivity check)
+    app.get('/api/health', async (req, res) => {
+      try {
+        await pool.query('SELECT 1');
+        res.status(200).json({ 
+          status: 'active', 
+          database: 'connected',
+          timestamp: new Date().toISOString() 
+        });
+      } catch (err) {
+        res.status(503).json({ 
+          status: 'degraded', 
+          database: 'disconnected',
+          error: err.message,
+          timestamp: new Date().toISOString() 
+        });
+      }
+    });
 
     app.use('/api/auth', authRoutes);
 
