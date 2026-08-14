@@ -3,7 +3,7 @@
   "private": true,
   "workspaces": ["engine", "platform/frontend", "platform/backend"],
   "engines": {
-    "node": "20.x"
+    "node": "24.x"
   },
   "scripts": {
     "build:engine": "npm run build -w engine",
